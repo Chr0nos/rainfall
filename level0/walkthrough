@@ -1,0 +1,8 @@
+we can see:
+   0x08048ed9 <+25>:    cmp    $0x1a7,%eax
+
+in gdb, so it compare the output of atoi with 423, okay, let's give a try
+
+level0@RainFall:~$ ./level0 423
+$ whoami
+level1
