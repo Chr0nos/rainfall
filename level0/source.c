@@ -17,7 +17,8 @@ int		main(int ac, char **av, char **env)
 		shell = strdup(SHELL);
 		gid = getegid();
 		uid = geteuid();
-		// setresgid();
+		setresgid(gid, gid, gid);
+		setresuid(uid, uid, uid);
 		execv(shell, env);
 	}
 	else
