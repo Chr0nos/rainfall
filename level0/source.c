@@ -7,16 +7,20 @@
 
 int		main(int ac, char **av, char **env)
 {
-	char		*shell;					// 8
-	int			x[3];					// 12 more (total: 20)
+	int			gid;					// 4
+	int			uid;					// 4
+	int			x;						// 4
+	char		*shell;					// 8	(total: 20)
 
 	if (atoi(av[1]) == 423)
 	{
 		shell = strdup(SHELL);
-		x[0] = getegid();
-		x[1] = geteuid();
+		gid = getegid();
+		uid = geteuid();
 		// setresgid();
-		execv("/bin/sh", env);
+		execv(shell, env);
 	}
+	else
+		fwrite("No !\n", 1, 5, STDERR_FILENO);
 	return (0);
 }
