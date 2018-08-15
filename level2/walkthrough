@@ -1,0 +1,14 @@
+on commence par gdb.
+
+gdb level2
+diasssemble main
+
+on peut voir qu une fonction "p" est appelée, allons voir ca de plus pres.
+on remarque:
+   0x080484ed <+25>:	call   0x80483c0 <gets@plt>
+
+la voie semble donc toute indiquée.
+avec https://projects.jason-rush.com/tools/buffer-overflow-eip-offset-string-generator/ on sait
+que l'overflow arrive apres 80 chars (sur 0x37634136).
+
+Helas il y a une comparaison avec un masque binaire sur 0xb0000000
