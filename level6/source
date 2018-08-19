@@ -17,6 +17,6 @@ int     main(void)
     malloc(0x04);
     // mise de 85 dans edx
 
-    strdup("");
+    strcpy(, "");
     m();
 }
