@@ -1,0 +1,22 @@
+void    m(void)
+{
+    puts("Nope");
+}
+
+void    n(void)
+{
+    system("/bin/cat /home/user/level7/.pass");
+}
+
+int     main(void)
+{
+    void *ptr;
+
+    ptr = malloc(0x40);
+
+    malloc(0x04);
+    // mise de 85 dans edx
+
+    strdup("");
+    m();
+}

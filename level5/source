@@ -1,0 +1,19 @@
+int     n()
+{
+    char       buf[0x218];
+
+    fgets(buf, 0x200, stdin);
+    printf(buf);
+    exit(1);
+}
+
+int     o(void)
+{
+    system("/bin/sh");
+    _exit(1);
+}
+
+int     main(void)
+{
+    return (n());
+}

