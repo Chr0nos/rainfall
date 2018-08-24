@@ -1,0 +1,9 @@
+level8@RainFall:~$ ./level8
+(nil), (nil)
+auth AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+0x804a008, (nil)
+serviceAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+0x804a008, 0x804a018
+login
+$ ls
+ls: cannot open directory .: Permission denied

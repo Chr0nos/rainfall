@@ -3,30 +3,29 @@
 #include <stdlib.h>
 #include <string.h>
 
-char    *file;
-
+char *file;
 
 int m()
 {
     int i;
 
     i = time(NULL);
-	printf("%s - %d\n");
+    printf("%s - %d\n", file, i);
 }
 
 // a void * in 32 bits = 4 bytes
 
-int     main(int ac, char **av)
+int main(int ac, char **av)
 {
-    FILE    *f;
-    char    *ptr[4];            // 16 (total: 20)
+    FILE *f;
+    char *ptr[4]; // 16 (total: 20)
 
     ptr[0] = malloc(8);
     ptr[1] = malloc(8);
     ptr[2] = malloc(8);
-    ptr[4] = malloc(8);
+    ptr[3] = malloc(8);
     strcpy(ptr[0], av[1]);
-    strcpy(ptr[1], av[2]);
+    strcpy(ptr[3], av[2]);
     f = fopen("/home/user/level8/.pass", "r");
     fgets(file, 0x44, f);
     puts("~~");
