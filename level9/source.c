@@ -7,7 +7,7 @@
 struct      truc {
     char    buf[100];
     int     value;
-    int     useless;
+    void    *pointer_to_object;     // this thing point on an object then called on the stack
 };
 
 int         main(int ac, char **av)
@@ -17,6 +17,8 @@ int         main(int ac, char **av)
 
     if (ac < 2)
         _exit(1);
+    alpha.pointer_to_object = &alpha;
+    bravo.pointer_to_object = &bravo;
     alpha.value = 5;
     bravo.value = 6;
     memcpy(alpha.buf, av[1], strlen(av[1]));

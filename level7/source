@@ -1,6 +1,0 @@
-int     main(int ac, char **av)
-{
-    malloc(arv[1]);
-    strcpy();
-    return (0);
-}
