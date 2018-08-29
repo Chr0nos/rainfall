@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 
 int p(char *str, char *pat)
 {
@@ -24,9 +25,11 @@ int pp(char *str)
 	strcat(str, str2);
 }
 
-int main()
+int main(void)
 {
-	char str[42];
+    char str[42];
+
 	pp(str);
-	puts(str);
+    puts(str);
+    return (EXIT_SUCCESS);
 }

