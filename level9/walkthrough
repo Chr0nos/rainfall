@@ -1,4 +1,4 @@
-on commence avec gdb level9, puis on va suer overflow generator, et on met la string
+on commence avec gdb level9, puis on va sur overflow generator, et on met la string
 dans argv[1], l'addresse du segfault indiquée est fausse mais si on regarde les registres avec "i r"
 on vois que la valeur qui nous intéresse est dans ECX : 0x41366441, le pointeur de destination est
 quand a lui mis dans EAX par le memcpy
@@ -8,7 +8,7 @@ la faille viens du memcpy qui ecrit dans un buffer de 100 en se basant sur un st
 écrire ou on veut, dans EIP par exemple...
 
 quelques trucs utiles:
-    0x804a00c : l'addresse de notre parametre AAAA
+    0x804a00c : l'addresse de notre parametre AAAA ( b *0x0804867c && x/s $eax)
     0x804a010 : 4 juste apres
     notre shellcode: '\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80'
 
