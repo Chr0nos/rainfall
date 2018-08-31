@@ -9,7 +9,7 @@ on remarque:
 
 Helas il y a une comparaison avec un masque binaire sur 0xb0000000 (canary).
 Du fait que l'on ne peut pas appeler directement system pour spawn un shell, on va
-utitliser une maniere détourneée: un "call eax", donc se debrouiller pour avoir notre shellcode
+utiliser une maniere détourneée: un "call eax", donc se debrouiller pour avoir notre shellcode
 dans un retour de fonction C qui appeler eax qui contiendra le shellcode.
 
 Voyons ou se trouve cet appel:
