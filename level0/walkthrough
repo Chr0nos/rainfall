@@ -1,7 +1,7 @@
 we can see:
    0x08048ed9 <+25>:    cmp    $0x1a7,%eax
 
-in gdb, so it compare the output of atoi with 423, okay, let's give a try
+dans gdb on voie que atoi prend le 1er parametre et le compare avec 423 il suffit donc :
 
 level0@RainFall:~$ ./level0 423
 $ whoami

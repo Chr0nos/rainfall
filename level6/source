@@ -10,13 +10,14 @@ void    n(void)
 
 int     main(void)
 {
-    void *ptr;
+    void	(*f)(void);
+    char *str;
+    char *str2;
 
-    ptr = malloc(0x40);
-
-    malloc(0x04);
-    // mise de 85 dans edx
-
-    strcpy(, "");
-    m();
+    str = malloc(0x40);
+    str2 = malloc(0x04);
+    
+    f = m();							//0x080484a5 <+41>:	mov    $0x8048468,%edx
+    strcpy(str, "");
+    f();
 }

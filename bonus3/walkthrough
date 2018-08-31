@@ -1,0 +1,4 @@
+on peut voir que le programme fait une conversion atoi de argv[1],
+et qu ensuite il met un \0 a l'emplacement du pass de la valeur retournee
+par atoi puis qu il compare que les deux pass, donc si on met "" atoi retournera
+0 et les pass aurons bien tous les deux une longuur de 0.

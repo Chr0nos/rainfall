@@ -1,0 +1,43 @@
+int greetuser(char *buff)
+{
+    char ptr[72];
+    if(i == 1)
+	{
+        	ptr = "Hyvää päivää "
+	}
+	else if(i == 2)
+	{
+        	ptr = "Goedemiddag! "
+	}
+	else()
+	{
+        	ptr = "Hello "
+	}
+    strcat(ptr, buff);
+    puts(ptr);
+
+}
+
+
+int main(int argc, char **argv)
+{
+	char str[80]
+	char *env;
+	if(argc != 3)
+		return(1)
+
+	memset(str,0,19)
+	strncpy(buff,argv[1],40)
+	strncpy(buff + 40,argv[2],32)
+	env = getenv("LANG")
+	if(env != NULL)
+	{
+		if(memcpy(env, "fi", 2) == 0)
+			i = 1;
+		else(memcpy(env, "nl", 2) == 0)
+			i = 2;
+	}
+	strncpy(env, buff, 19)
+	greetuser(buff)
+}
+

