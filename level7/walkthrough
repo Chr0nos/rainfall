@@ -21,11 +21,12 @@ on remarque:
     - les malloc font 20 en réalitée, et a 24 se trouve l'addresse du malloc suivant
 
 
-on va donc fair sa en 2 etape 1 par strcpy :
+on va donc faire ca en 2 etapes 1 par strcpy :
 	on va changer l'adresse de ptr[3] par l'adresse du GoT de puts.
-ensuit 2eme strcpy:
+
+ensuite 2eme strcpy:
 	on va ecrire l'adresse de la fonction 'm' (0x080484f4) dans ptr[3] qui point sur le GoT de puts
-	ensuit puts et appeller mais sur l'adresse de 'm'
+	ensuite puts et appeller mais sur l'adresse de 'm'
 
 level7@RainFall:~$ objdump -R level7  | grep puts
 08049928 R_386_JUMP_SLOT   puts
